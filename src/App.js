@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Landing from "./pages/Landing/Landing";
 
 import Login from "./pages/Auth/Login";
@@ -13,14 +13,10 @@ function App() {
     <div>
       <Routes>
         <Route path="/" element={<Landing />} />
-
         <Route path="/home" element={<HomePage />} />
-
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-
         <Route path="/about" element={<About />} />
-        
       </Routes>
 
       <Toaster />

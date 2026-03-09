@@ -9,7 +9,7 @@ const createTodo = async (data) => {
   }
 
   return await axios.post(
-    `${process.env.REACT_APP_API_URL}/api/v1/todo/create`,
+    `${process.env.REACT_APP_API_URL}/todo/create`,
     data,
     {
       headers: {
@@ -29,7 +29,7 @@ const getAllTodo = async (id) => {
   }
 
   return await axios.get(
-    `${process.env.REACT_APP_API_URL}/api/v1/todo/getAll/${id}`,
+    `${process.env.REACT_APP_API_URL}/todo/getAll/${id}`,
     {
       headers: {
         Authorization: `Bearer ${storedData.token}`,
@@ -38,8 +38,7 @@ const getAllTodo = async (id) => {
   );
 };
 
-//update todo
-
+// update todo
 const updateTodo = async (id, updatedData) => {
   const storedData = JSON.parse(localStorage.getItem("todoapp"));
 
@@ -49,7 +48,7 @@ const updateTodo = async (id, updatedData) => {
   }
 
   return await axios.patch(
-    `${process.env.REACT_APP_API_URL}/api/v1/todo/update/${id}`,
+    `${process.env.REACT_APP_API_URL}/todo/update/${id}`,
     updatedData,
     {
       headers: {
@@ -57,12 +56,10 @@ const updateTodo = async (id, updatedData) => {
       },
     }
   );
-
 };
 
-
-
-const deleteTodo = async (id, updatedData) => {
+// delete todo
+const deleteTodo = async (id) => {
   const storedData = JSON.parse(localStorage.getItem("todoapp"));
 
   if (!storedData?.token) {
@@ -71,14 +68,20 @@ const deleteTodo = async (id, updatedData) => {
   }
 
   return await axios.delete(
-    `${process.env.REACT_APP_API_URL}/api/v1/todo/delete/${id}`,
+    `${process.env.REACT_APP_API_URL}/todo/delete/${id}`,
     {
       headers: {
         Authorization: `Bearer ${storedData.token}`,
       },
-      data: updatedData
     }
   );
-}
+};
 
-export default { createTodo, getAllTodo, updateTodo, deleteTodo };
+const TodoServices = {
+  createTodo,
+  getAllTodo,
+  updateTodo,
+  deleteTodo,
+};
+
+export default TodoServices;
