@@ -1,6 +1,10 @@
 import axios from "axios";
 
-const API = `${process.env.REACT_APP_API_URL}/api/v1/users`;
+// Base URL uses environment variable for production
+// Locally, proxy in package.json handles /users requests
+const API = process.env.NODE_ENV === "production" 
+  ? `${process.env.REACT_APP_API_URL}/users` 
+  : "/api/v1/users";
 
 const registerUser = (data) => {
     return axios.post(`${API}/register`, data);
